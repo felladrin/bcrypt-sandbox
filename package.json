@@ -48,7 +48,6 @@
   },
   "dependencies": {
     "bcrypt": "^3.0.0",
-    "bootstrap": "^3.3.7",
     "electron": "^2.0.8",
     "electron-compile": "^6.4.3",
     "electron-devtools-installer": "^2.2.4",
@@ -56,7 +55,6 @@
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-hot-loader": "^4.3.5",
-    "reactstrap": "^6.4.0",
     "semantic-ui-css": "^2.3.3",
     "semantic-ui-react": "^0.82.3"
   },
