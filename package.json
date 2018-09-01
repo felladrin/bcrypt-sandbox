@@ -1,8 +1,8 @@
 {
   "name": "bcrypt-sandbox",
-  "productName": "bcrypt-sandbox",
+  "productName": "Bcrypt Sandbox",
+  "description": "A tool for encrypting and decrypting text with bcrypt.",
   "version": "1.0.0",
-  "description": "Bcrypt Sandbox",
   "main": "src/index.js",
   "scripts": {
     "start": "electron-forge start",
@@ -12,7 +12,15 @@
     "lint": "eslint --fix --cache --color --ext .jsx,.js src"
   },
   "keywords": [],
-  "author": "victor",
+  "author": {
+    "name": "Victor Nogueira",
+    "email": "felladrin@gmail.com",
+    "url": "https://victornogueira.io"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/felladrin/bcrypt-sandbox"
+  },
   "license": "MIT",
   "config": {
     "forge": {
