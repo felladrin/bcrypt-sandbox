@@ -4,11 +4,15 @@ A tool for encrypting and decrypting text with bcrypt.
 
 ![Screenshot](screenshot.png)
 
-## Testing
+## Running, Building and Testing
 
-```
-npm test
-```
+Use the following commands for it:
+
+| Command         | Action  |
+| --------------- | ------- |
+| `npm start`     | Start the program |
+| `npm run build` | Build the program generating an executable for Windows, Mac or Linux |
+| `npm test`      | Run the test to check if everything is in good place after updating the source code |
 
 ## License
 
