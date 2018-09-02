@@ -6,7 +6,7 @@ A tool for encrypting and decrypting text with bcrypt.
 
 ## Running, Building and Testing
 
-Use the following commands for it:
+After cloning this repository, you can use the following commands:
 
 | Command         | Action  |
 | --------------- | ------- |
