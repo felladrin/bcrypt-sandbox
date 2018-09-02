@@ -71,6 +71,7 @@ class App extends React.Component {
     if (displayEncryptionResult) {
       encryptionResultMessage = (
         <Message
+          id="encryption-result"
           info
           header="Result:"
           content={encryptedText}
@@ -82,6 +83,7 @@ class App extends React.Component {
     if (displayDecryptionResult) {
       decryptionResultMessage = (
         <Message
+          id="decryption-result"
           success={decryptionMatched}
           negative={!decryptionMatched}
           header="Result:"
@@ -101,7 +103,6 @@ class App extends React.Component {
             <Menu.Item>
               A tool for encrypting and decrypting text with bcrypt
             </Menu.Item>
-
           </Container>
         </Menu>
         <Container style={{ marginTop: '7em' }}>
@@ -112,9 +113,9 @@ class App extends React.Component {
                   <i className="random icon" />
                   Encryption
                 </h2>
-                <Input type="text" placeholder="Enter some text to encrypt" onChange={this.onChangeTextToEncrypt} fluid action>
+                <Input id="text-to-encrypt" type="text" placeholder="Enter some text to encrypt" onChange={this.onChangeTextToEncrypt} fluid action>
                   <input />
-                  <Button color="primary" onClick={this.encrypt} disabled={!textToEncrypt}>Encrypt</Button>
+                  <Button id="encrypt-button" color="primary" onClick={this.encrypt} disabled={!textToEncrypt}>Encrypt</Button>
                 </Input>
                 {encryptionResultMessage}
               </Grid.Column>
@@ -123,9 +124,9 @@ class App extends React.Component {
                   <i className="retweet icon" />
                   Decryption
                 </h2>
-                <Input type="text" placeholder="Enter the hash to check" onChange={this.onChangeHashToDecrypt} fluid />
-                <Input type="text" placeholder="Enter the text to check against" onChange={this.onChangeTextToDecrypt} fluid />
-                <Button color="primary" onClick={this.decrypt} disabled={!textToDecrypt || !hashToDecrypt} fluid>
+                <Input id="hash-to-decrypt" type="text" placeholder="Enter the hash to check" onChange={this.onChangeHashToDecrypt} fluid />
+                <Input id="text-to-decrypt" type="text" placeholder="Enter the text to check against" onChange={this.onChangeTextToDecrypt} fluid />
+                <Button id="decrypt-button" color="primary" onClick={this.decrypt} disabled={!textToDecrypt || !hashToDecrypt} fluid>
                   Check if hash and text match
                 </Button>
                 {decryptionResultMessage}
@@ -134,7 +135,6 @@ class App extends React.Component {
           </Grid>
         </Container>
       </div>
-
     );
   }
 }

@@ -5,7 +5,7 @@ import { enableLiveReload } from 'electron-compile';
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 
-const isDevMode = process.execPath.match(/[\\/]electron/);
+const isDevMode = process.execPath.match(/[\\/]electron/) && (!process.env.SPECTRON);
 
 if (isDevMode) enableLiveReload({ strategy: 'react-hmr' });
 
@@ -14,6 +14,7 @@ const createWindow = async () => {
   mainWindow = new BrowserWindow({
     width: 1280,
     height: 430,
+    title: 'Bcrypt Sandbox',
   });
 
   // and load the index.html of the app.
