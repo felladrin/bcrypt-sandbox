@@ -5,12 +5,9 @@
   "version": "1.0.0",
   "main": "src/index.js",
   "scripts": {
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
-    "publish": "electron-forge publish",
-    "pretest": "electron-compile .",
-    "test": "node test/spectron.js",
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html --no-source-maps",
+    "serve": "static-server dist",
     "lint": "eslint --fix --cache --color --ext .jsx,.js src"
   },
   "keywords": [],
@@ -24,70 +21,27 @@
     "url": "https://github.com/felladrin/bcrypt-sandbox"
   },
   "license": "MIT",
-  "config": {
-    "forge": {
-      "make_targets": {
-        "win32": [
-          "squirrel"
-        ],
-        "darwin": [
-          "zip"
-        ],
-        "linux": [
-          "deb",
-          "rpm"
-        ]
-      },
-      "electronPackagerConfig": {
-        "packageManager": "npm"
-      },
-      "electronWinstallerConfig": {
-        "name": "bcrypt_sandbox"
-      },
-      "electronInstallerDebian": {},
-      "electronInstallerRedhat": {},
-      "github_repository": {
-        "owner": "Victor Nogueira",
-        "name": "Bcrypt Sandbox"
-      },
-      "windowsStoreConfig": {
-        "packageName": "",
-        "name": "Bcrypt Sandbox"
-      }
-    }
-  },
   "dependencies": {
-    "@types/webdriverio": "^5.0.0",
-    "bcrypt": "^3.0.4",
-    "electron": "^4.0.4",
-    "electron-compile": "^6.4.4",
-    "electron-devtools-installer": "^2.2.4",
-    "electron-squirrel-startup": "^1.0.0",
-    "react": "^16.8.1",
-    "react-dom": "^16.8.1",
-    "react-hot-loader": "^4.6.5",
+    "bcryptjs": "^2.4.3",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-hot-loader": "^4.12.12",
     "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^0.85.0"
+    "semantic-ui-react": "^0.85.0",
+    "static-server": "^2.2.1"
   },
   "devDependencies": {
-    "@types/bcrypt": "^3.0.0",
-    "@types/electron-devtools-installer": "^2.2.0",
-    "@types/eslint": "^4.16.6",
-    "@types/mocha": "^5.2.5",
-    "@types/react": "^16.8.2",
-    "@types/react-dom": "^16.8.0",
+    "@types/react": "^16.9.2",
+    "@types/react-dom": "^16.9.0",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-plugin-transform-es2015-classes": "^6.24.1",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
-    "electron-forge": "^5.2.4",
-    "electron-prebuilt-compile": "4.0.0",
-    "eslint": "^5.13.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-import": "^2.16.0",
-    "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-react": "^7.12.4",
-    "mocha": "^5.2.0",
-    "spectron": "^5.0.0"
+    "eslint": "^6.3.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.3",
+    "parcel-bundler": "^1.12.3"
   }
 }

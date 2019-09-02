@@ -1,8 +1,9 @@
 import React from 'react';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import {
   Container, Grid, Input, Button, Message, Menu,
 } from 'semantic-ui-react';
+import 'semantic-ui-css/semantic.min.css';
 
 const SALT_ROUNDS = 10;
 
@@ -20,15 +21,15 @@ class App extends React.Component {
       displayDecryptionResult: false,
     };
 
-    this.encrypt = async () => {
+    this.encrypt = () => {
       const { textToEncrypt } = this.state;
-      const encryptedText = await bcrypt.hash(textToEncrypt, SALT_ROUNDS);
+      const encryptedText = bcrypt.hashSync(textToEncrypt, SALT_ROUNDS);
       this.setState({ encryptedText, displayEncryptionResult: true });
     };
 
-    this.decrypt = async () => {
+    this.decrypt = () => {
       const { textToDecrypt, hashToDecrypt } = this.state;
-      const decryptionMatched = await await bcrypt.compare(textToDecrypt, hashToDecrypt);
+      const decryptionMatched = bcrypt.compareSync(textToDecrypt, hashToDecrypt);
       this.setState({ decryptionMatched, displayDecryptionResult: true });
     };
 
@@ -61,8 +62,13 @@ class App extends React.Component {
 
   render() {
     const {
-      encryptedText, displayEncryptionResult, displayDecryptionResult, decryptionMatched,
-      textToEncrypt, textToDecrypt, hashToDecrypt,
+      encryptedText,
+      displayEncryptionResult,
+      displayDecryptionResult,
+      decryptionMatched,
+      textToEncrypt,
+      textToDecrypt,
+      hashToDecrypt,
     } = this.state;
 
     let encryptionResultMessage;
@@ -97,12 +103,8 @@ class App extends React.Component {
       <div>
         <Menu fixed="top" inverted>
           <Container>
-            <Menu.Item header>
-              Bcrypt Sandbox
-            </Menu.Item>
-            <Menu.Item>
-              A tool for encrypting and decrypting text with bcrypt
-            </Menu.Item>
+            <Menu.Item header>Bcrypt Sandbox</Menu.Item>
+            <Menu.Item>A tool for encrypting and decrypting text with bcrypt</Menu.Item>
           </Container>
         </Menu>
         <Container style={{ marginTop: '7em' }}>
@@ -113,9 +115,23 @@ class App extends React.Component {
                   <i className="random icon" />
                   Encryption
                 </h2>
-                <Input id="text-to-encrypt" type="text" placeholder="Enter some text to encrypt" onChange={this.onChangeTextToEncrypt} fluid action>
+                <Input
+                  id="text-to-encrypt"
+                  type="text"
+                  placeholder="Enter some text to encrypt"
+                  onChange={this.onChangeTextToEncrypt}
+                  fluid
+                  action
+                >
                   <input />
-                  <Button id="encrypt-button" color="primary" onClick={this.encrypt} disabled={!textToEncrypt}>Encrypt</Button>
+                  <Button
+                    id="encrypt-button"
+                    color="blue"
+                    onClick={this.encrypt}
+                    disabled={!textToEncrypt}
+                  >
+                    Encrypt
+                  </Button>
                 </Input>
                 {encryptionResultMessage}
               </Grid.Column>
@@ -124,9 +140,27 @@ class App extends React.Component {
                   <i className="retweet icon" />
                   Decryption
                 </h2>
-                <Input id="hash-to-decrypt" type="text" placeholder="Enter the hash to check" onChange={this.onChangeHashToDecrypt} fluid />
-                <Input id="text-to-decrypt" type="text" placeholder="Enter the text to check against" onChange={this.onChangeTextToDecrypt} fluid />
-                <Button id="decrypt-button" color="primary" onClick={this.decrypt} disabled={!textToDecrypt || !hashToDecrypt} fluid>
+                <Input
+                  id="hash-to-decrypt"
+                  type="text"
+                  placeholder="Enter the hash to check"
+                  onChange={this.onChangeHashToDecrypt}
+                  fluid
+                />
+                <Input
+                  id="text-to-decrypt"
+                  type="text"
+                  placeholder="Enter the text to check against"
+                  onChange={this.onChangeTextToDecrypt}
+                  fluid
+                />
+                <Button
+                  id="decrypt-button"
+                  color="blue"
+                  onClick={this.decrypt}
+                  disabled={!textToDecrypt || !hashToDecrypt}
+                  fluid
+                >
                   Check if hash and text match
                 </Button>
                 {decryptionResultMessage}
