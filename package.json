@@ -6,7 +6,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "parcel src/index.html",
-    "build": "parcel build src/index.html --no-source-maps",
+    "build": "parcel build src/index.html --public-url '.' --no-source-maps",
     "serve": "static-server dist",
     "lint": "eslint --fix --cache --color --ext .jsx,.js src"
   },
