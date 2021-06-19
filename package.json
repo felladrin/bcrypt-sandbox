@@ -3,12 +3,13 @@
   "productName": "Bcrypt Sandbox",
   "description": "A tool for encrypting and decrypting text with bcrypt.",
   "version": "1.0.0",
+  "type": "module",
   "private": true,
   "scripts": {
-    "start": "parcel src/index.html",
-    "build": "parcel build src/index.html --public-url '.' --no-source-maps",
-    "serve": "static-server dist",
-    "lint": "eslint --fix --cache --color --ext .jsx,.js src"
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "lint": "eslint --fix --ext .jsx,.js src"
   },
   "author": {
     "name": "Victor Nogueira",
@@ -21,12 +22,11 @@
   },
   "license": "MIT",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
+    "hash-wasm": "^4.7.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^2.0.3",
-    "static-server": "^2.2.1"
+    "semantic-ui-react": "^2.0.3"
   },
   "devDependencies": {
     "@types/react": "^17.0.11",
@@ -36,10 +36,9 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "eslint": "^7.29.0",
-    "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.24.0",
-    "parcel-bundler": "^1.12.5"
+    "vite": "^2.3.7"
   }
 }

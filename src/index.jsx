@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-import bcrypt from "bcryptjs";
-import {
-  Container,
-  Grid,
-  Input,
-  Button,
-  Message,
-  Menu,
-} from "semantic-ui-react";
+import { bcrypt, bcryptVerify } from "hash-wasm";
+import { Container, Grid, Input, Button, Message, Menu } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 
-const SALT_ROUNDS = 10;
+const BCRYPT_COST_FACTOR = 10;
 
 function App() {
   const [textToEncrypt, setTextToEncrypt] = useState("");
@@ -42,17 +35,24 @@ function App() {
   }, [hashToDecrypt]);
 
   useEffect(() => {
-    setDecryptButtonDisabled(
-      textToDecrypt.length === 0 || hashToDecrypt.length === 0
-    );
+    setDecryptButtonDisabled(textToDecrypt.length === 0 || hashToDecrypt.length === 0);
   }, [textToDecrypt, hashToDecrypt]);
 
-  const handleEncryptButtonClicked = () => {
-    setEncryptedText(bcrypt.hashSync(textToEncrypt, SALT_ROUNDS));
+  const handleEncryptButtonClicked = async () => {
+    const salt = new Uint8Array(16);
+    window.crypto.getRandomValues(salt);
+    setEncryptedText(
+      await bcrypt({
+        password: textToEncrypt,
+        costFactor: BCRYPT_COST_FACTOR,
+        salt,
+        outputType: "encoded",
+      })
+    );
   };
 
-  const handleDecryptButtonClicked = () => {
-    setDecryptionMatched(bcrypt.compareSync(textToDecrypt, hashToDecrypt));
+  const handleDecryptButtonClicked = async () => {
+    setDecryptionMatched(await bcryptVerify({ password: textToDecrypt, hash: hashToDecrypt }));
     setDisplayDecryptionResult(true);
   };
 
@@ -65,12 +65,14 @@ function App() {
   };
 
   const handleHashToDecryptChanged = (event) => {
-    if (!event.target.value.startsWith("$")) {
-      event.target.value = "";
+    const { target } = event;
+
+    if (!target.value.startsWith("$")) {
+      target.value = "";
       return;
     }
 
-    setHashToDecrypt(event.target.value);
+    setHashToDecrypt(target.value);
   };
 
   const handleEncryptionResultMessageDismissed = () => {
@@ -82,13 +84,11 @@ function App() {
   };
 
   return (
-    <React.Fragment>
+    <>
       <Menu fixed="top" inverted>
         <Container>
           <Menu.Item header>Bcrypt Sandbox</Menu.Item>
-          <Menu.Item>
-            A tool for encrypting and decrypting text with bcrypt
-          </Menu.Item>
+          <Menu.Item>A tool for encrypting and decrypting text with bcrypt</Menu.Item>
         </Container>
       </Menu>
       <Container style={{ marginTop: "7em" }}>
@@ -96,8 +96,7 @@ function App() {
           <Grid.Row>
             <Grid.Column>
               <h2 className="ui center aligned header">
-                <i className="random icon" />
-                Encryption
+                <i className="random icon" /> Encryption
               </h2>
               <Input
                 id="text-to-encrypt"
@@ -129,8 +128,7 @@ function App() {
             </Grid.Column>
             <Grid.Column>
               <h2 className="ui center aligned header">
-                <i className="retweet icon" />
-                Decryption
+                <i className="retweet icon" /> Decryption
               </h2>
               <Input
                 id="hash-to-decrypt"
@@ -175,11 +173,8 @@ function App() {
           </Grid.Row>
         </Grid>
       </Container>
-    </React.Fragment>
+    </>
   );
 }
 
-ReactDOM.render(
-  <App />,
-  document.body.appendChild(document.createElement("div"))
-);
+ReactDOM.render(<App />, document.body.appendChild(document.createElement("div")));
