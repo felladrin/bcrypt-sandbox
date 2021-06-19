@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build --base",
     "serve": "vite preview",
     "lint": "eslint --fix --ext .jsx,.js src"
   },
