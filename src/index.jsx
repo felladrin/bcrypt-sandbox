@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import ReactDOM from "react-dom";
 import { bcrypt, bcryptVerify } from "hash-wasm";
 import { Container, Grid, Input, Button, Message, Menu } from "semantic-ui-react";
@@ -16,9 +16,12 @@ function App() {
   const [displayDecryptionResult, setDisplayDecryptionResult] = useState(false);
   const [encryptButtonDisabled, setEncryptButtonDisabled] = useState(true);
   const [decryptButtonDisabled, setDecryptButtonDisabled] = useState(true);
+  const [copyButtonClicked, setCopyButtonClicked] = useState(false);
+  const copyInput = useRef();
 
   useEffect(() => {
     setDisplayEncryptionResult(encryptedText.length > 0);
+    setCopyButtonClicked(false);
   }, [encryptedText]);
 
   useEffect(() => {
@@ -83,6 +86,14 @@ function App() {
     setDisplayDecryptionResult(false);
   };
 
+  const handleCopyButtonClicked = () => {
+    var copyText = copyInput.current.inputRef.current;
+    copyText.select();
+    copyText.setSelectionRange?.(0, encryptedText.length);
+    document.execCommand("copy");
+    setCopyButtonClicked(true);
+  };
+
   return (
     <>
       <Menu fixed="top" inverted>
@@ -92,85 +103,70 @@ function App() {
         </Container>
       </Menu>
       <Container style={{ marginTop: "7em" }}>
-        <Grid columns={2} divided>
-          <Grid.Row>
-            <Grid.Column>
-              <h2 className="ui center aligned header">
-                <i className="random icon" /> Encryption
-              </h2>
-              <Input
-                id="text-to-encrypt"
-                type="text"
-                placeholder="Enter some text to encrypt"
-                onChange={handleTextToEncryptChanged}
-                fluid
-                action
-              >
-                <input />
-                <Button
-                  id="encrypt-button"
-                  color="blue"
-                  onClick={handleEncryptButtonClicked}
-                  disabled={encryptButtonDisabled}
-                >
-                  Encrypt
-                </Button>
-              </Input>
-              {displayEncryptionResult && (
-                <Message
-                  id="encryption-result"
-                  header="Result:"
-                  content={encryptedText}
-                  onDismiss={handleEncryptionResultMessageDismissed}
-                  info
-                />
-              )}
-            </Grid.Column>
-            <Grid.Column>
-              <h2 className="ui center aligned header">
-                <i className="retweet icon" /> Decryption
-              </h2>
-              <Input
-                id="hash-to-decrypt"
-                type="text"
-                placeholder="Enter the hash to check"
-                onChange={handleHashToDecryptChanged}
-                fluid
-              />
-              <Input
-                id="text-to-decrypt"
-                type="text"
-                placeholder="Enter the text to check against"
-                onChange={handleTextToDecryptChanged}
-                fluid
-              />
-              <Button
-                id="decrypt-button"
-                color="blue"
-                onClick={handleDecryptButtonClicked}
-                disabled={decryptButtonDisabled}
-                fluid
-              >
-                Check if hash and text match
+        <Grid stackable columns={2} divided>
+          <Grid.Column>
+            <h2 className="ui center aligned header">
+              <i className="random icon" /> Encryption
+            </h2>
+            <Input
+              type="text"
+              placeholder="Enter some text to encrypt"
+              onChange={handleTextToEncryptChanged}
+              fluid
+              action
+            >
+              <input />
+              <Button color="blue" onClick={handleEncryptButtonClicked} disabled={encryptButtonDisabled}>
+                Encrypt
               </Button>
-              {displayDecryptionResult && decryptionMatched && (
-                <Message
-                  header="Result:"
-                  content="Hash and text match!"
-                  onDismiss={handleDecryptionResultMessageDismissed}
-                  success
+            </Input>
+            {displayEncryptionResult && (
+              <Message onDismiss={handleEncryptionResultMessageDismissed} info>
+                <Message.Header>Result:</Message.Header>
+                <Input
+                  action={
+                    <Button color="teal" icon labelPosition="right" onClick={handleCopyButtonClicked}>
+                      {copyButtonClicked ? "Copied!" : "Copy"} <i className="copy icon" />
+                    </Button>
+                  }
+                  value={encryptedText}
+                  ref={copyInput}
+                  fluid
                 />
-              )}
-              {displayDecryptionResult && !decryptionMatched && (
-                <Message
-                  header="Result:"
-                  content="Hash and text don't match."
-                  onDismiss={handleDecryptionResultMessageDismissed}
-                  negative
-                />
-              )}
-            </Grid.Column>
-          </Grid.Row>
+              </Message>
+            )}
+          </Grid.Column>
+          <Grid.Column>
+            <h2 className="ui center aligned header">
+              <i className="retweet icon" /> Decryption
+            </h2>
+            <Input type="text" placeholder="Enter the hash to check" onChange={handleHashToDecryptChanged} fluid />
+            <Input
+              type="text"
+              placeholder="Enter the text to check against"
+              onChange={handleTextToDecryptChanged}
+              fluid
+            />
+            <Button color="blue" onClick={handleDecryptButtonClicked} disabled={decryptButtonDisabled} fluid>
+              Check if hash and text match
+            </Button>
+            {displayDecryptionResult && decryptionMatched && (
+              <Message
+                header="Result:"
+                content="Hash and text match!"
+                onDismiss={handleDecryptionResultMessageDismissed}
+                success
+              />
+            )}
+            {displayDecryptionResult && !decryptionMatched && (
+              <Message
+                header="Result:"
+                content="Hash and text don't match."
+                onDismiss={handleDecryptionResultMessageDismissed}
+                negative
+              />
+            )}
+          </Grid.Column>
         </Grid>
       </Container>
     </>
