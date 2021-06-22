@@ -1,7 +1,7 @@
 name: Publish to GitHub Pages
 on:
   push:
-    branches: [ master ]
+    branches: [master]
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -12,8 +12,8 @@ jobs:
         env:
           HUSKY_SKIP_INSTALL: 1
         run: |
-          npm ci
-          npm run build
+          npx pnpm install
+          npx pnpm run build
       - name: Publish to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
