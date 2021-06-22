@@ -11,8 +11,10 @@
     "preview": "vite preview",
     "serve": "npm-run-all --sequential build preview",
     "lint": "eslint --fix --ext .jsx,.js src",
-    "cypress": "cypress open",
-    "test": "npm-run-all --parallel dev cypress"
+    "cypress-open": "cypress open",
+    "cypress-run": "cypress run",
+    "test-watch": "npm-run-all --parallel dev cypress-open",
+    "test": "npm-run-all --parallel --race dev cypress-run"
   },
   "author": {
     "name": "Victor Nogueira",
