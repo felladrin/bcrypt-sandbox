@@ -112,11 +112,17 @@ function App() {
               type="text"
               placeholder="Enter some text to encrypt"
               onChange={handleTextToEncryptChanged}
+              data-cy="text-to-encrypt"
               fluid
               action
             >
               <input />
-              <Button color="blue" onClick={handleEncryptButtonClicked} disabled={encryptButtonDisabled}>
+              <Button
+                color="blue"
+                onClick={handleEncryptButtonClicked}
+                disabled={encryptButtonDisabled}
+                data-cy="button-to-encrypt"
+              >
                 Encrypt
               </Button>
             </Input>
@@ -131,6 +137,7 @@ function App() {
                   }
                   value={encryptedText}
                   ref={copyInput}
+                  data-cy="encrypted-text"
                   fluid
                 />
               </Message>
@@ -140,14 +147,27 @@ function App() {
             <h2 className="ui center aligned header">
               <i className="retweet icon" /> Decryption
             </h2>
-            <Input type="text" placeholder="Enter the hash to check" onChange={handleHashToDecryptChanged} fluid />
+            <Input
+              type="text"
+              placeholder="Enter the hash to check"
+              onChange={handleHashToDecryptChanged}
+              data-cy="hash-to-decrypt"
+              fluid
+            />
             <Input
               type="text"
               placeholder="Enter the text to check against"
               onChange={handleTextToDecryptChanged}
+              data-cy="text-to-decrypt"
               fluid
             />
-            <Button color="blue" onClick={handleDecryptButtonClicked} disabled={decryptButtonDisabled} fluid>
+            <Button
+              color="blue"
+              onClick={handleDecryptButtonClicked}
+              disabled={decryptButtonDisabled}
+              data-cy="button-to-decrypt"
+              fluid
+            >
               Check if hash and text match
             </Button>
             {displayDecryptionResult && decryptionMatched && (
@@ -155,6 +175,7 @@ function App() {
                 header="Result:"
                 content="Hash and text match!"
                 onDismiss={handleDecryptionResultMessageDismissed}
+                data-cy="decryption-result"
                 success
               />
             )}
