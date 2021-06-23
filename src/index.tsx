@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { bcrypt, bcryptVerify } from "hash-wasm";
-import { Container, Grid, Input, Button, Message, Menu } from "semantic-ui-react";
+import { Container, Grid, Input, Button, Message, Menu, Icon } from "semantic-ui-react";
 import { selectAndCopyValueFromInputElement } from "./functions/selectAndCopyValueFromInputElement";
 import { getRandomUint8Array } from "./functions/getRandomUint8Array";
 
@@ -85,7 +85,7 @@ function App() {
         <Grid stackable columns={2} divided>
           <Grid.Column>
             <h2 className="ui center aligned header">
-              <i className="random icon" /> Encryption
+              <Icon fitted name="random" /> Encryption
             </h2>
             <Input
               type="text"
@@ -111,7 +111,7 @@ function App() {
                 <Input
                   action={
                     <Button color="teal" icon labelPosition="right" onClick={handleCopyButtonClicked}>
-                      {copyButtonClicked ? "Copied!" : "Copy"} <i className="copy icon" />
+                      {copyButtonClicked ? "Copied!" : "Copy"} <Icon fitted name="copy" />
                     </Button>
                   }
                   value={encryptedText}
@@ -124,7 +124,7 @@ function App() {
           </Grid.Column>
           <Grid.Column>
             <h2 className="ui center aligned header">
-              <i className="retweet icon" /> Decryption
+              <Icon fitted name="retweet" /> Decryption
             </h2>
             <Input
               type="text"
