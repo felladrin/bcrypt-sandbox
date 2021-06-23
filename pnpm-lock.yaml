@@ -18,6 +18,7 @@ specifiers:
   react-dom: ^17.0.2
   semantic-ui-css: ^2.4.1
   semantic-ui-react: ^2.0.3
+  typescript: ^4.3.4
   vite: ^2.3.7
 
 dependencies:
@@ -40,6 +41,7 @@ devDependencies:
   eslint-plugin-jsx-a11y: 6.4.1_eslint@7.29.0
   eslint-plugin-react: 7.24.0_eslint@7.29.0
   npm-run-all: 4.1.5
+  typescript: 4.3.4
   vite: 2.3.8
 
 packages:
@@ -3072,6 +3074,12 @@ packages:
   /type-fest/0.21.3:
     resolution: {integrity: sha512-t0rzBq87m3fVcduHDUFhKmyyX+9eo6WQjZvf51Ea/M0Q7+T374Jp1aUiyUl0GKxp8M/OETVHSDvmkyPgvX+X2w==}
     engines: {node: '>=10'}
+    dev: true
+
+  /typescript/4.3.4:
+    resolution: {integrity: sha512-uauPG7XZn9F/mo+7MrsRjyvbxFpzemRjKEZXS4AK83oP2KKOJPvb+9cO/gmnv8arWZvhnjVOXz7B49m1l0e9Ew==}
+    engines: {node: '>=4.2.0'}
+    hasBin: true
     dev: true
 
   /unbox-primitive/1.0.1:

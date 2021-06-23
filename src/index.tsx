@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { bcrypt, bcryptVerify } from "hash-wasm";
 import { Container, Grid, Input, Button, Message, Menu } from "semantic-ui-react";
@@ -17,7 +17,7 @@ function App() {
   const [isHashToDecryptValid, setHashToDecryptValid] = useState(false);
   const [encryptButtonDisabled, setEncryptButtonDisabled] = useState(true);
   const [decryptButtonDisabled, setDecryptButtonDisabled] = useState(true);
-  const copyInput = useRef();
+  const [copyInput, setCopyInputReference] = useState<Input | null>(null);
 
   useEffect(() => {
     setDisplayEncryptionResult(encryptedText.length > 0);
@@ -58,18 +58,6 @@ function App() {
     setDisplayDecryptionResult(true);
   };
 
-  const handleTextToEncryptChanged = (event) => {
-    setTextToEncrypt(event.target.value);
-  };
-
-  const handleTextToDecryptChanged = (event) => {
-    setTextToDecrypt(event.target.value);
-  };
-
-  const handleHashToDecryptChanged = (event) => {
-    setHashToDecrypt(event.target.value);
-  };
-
   const handleEncryptionResultMessageDismissed = () => {
     setDisplayEncryptionResult(false);
   };
@@ -79,7 +67,9 @@ function App() {
   };
 
   const handleCopyButtonClicked = () => {
-    selectAndCopyValueFromInputElement(copyInput.current.inputRef.current);
+    if (copyInput) {
+      selectAndCopyValueFromInputElement((copyInput as any).inputRef.current);
+    }
     setCopyButtonClicked(true);
   };
 
@@ -100,7 +90,7 @@ function App() {
             <Input
               type="text"
               placeholder="Enter some text to encrypt"
-              onChange={handleTextToEncryptChanged}
+              onChange={(_, data) => setTextToEncrypt(data.value)}
               data-cy="text-to-encrypt"
               fluid
               action
@@ -125,7 +115,7 @@ function App() {
                     </Button>
                   }
                   value={encryptedText}
-                  ref={copyInput}
+                  ref={setCopyInputReference}
                   data-cy="encrypted-text"
                   fluid
                 />
@@ -140,14 +130,14 @@ function App() {
               type="text"
               error={hashToDecrypt.length > 0 && !isHashToDecryptValid}
               placeholder="Enter the hash to check"
-              onChange={handleHashToDecryptChanged}
+              onChange={(_, data) => setHashToDecrypt(data.value)}
               data-cy="hash-to-decrypt"
               fluid
             />
             <Input
               type="text"
               placeholder="Enter the text to check against"
-              onChange={handleTextToDecryptChanged}
+              onChange={(_, data) => setTextToDecrypt(data.value)}
               data-cy="text-to-decrypt"
               fluid
             />
