@@ -2,9 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import ReactDOM from "react-dom";
 import { bcrypt, bcryptVerify } from "hash-wasm";
 import { Container, Grid, Input, Button, Message, Menu } from "semantic-ui-react";
-import "semantic-ui-css/semantic.min.css";
-
-const BCRYPT_COST_FACTOR = 10;
+import { selectAndCopyValueFromInputElement } from "./functions/selectAndCopyValueFromInputElement";
+import { getRandomUint8Array } from "./functions/getRandomUint8Array";
 
 function App() {
   const [textToEncrypt, setTextToEncrypt] = useState("");
@@ -14,9 +13,10 @@ function App() {
   const [decryptionMatched, setDecryptionMatched] = useState(false);
   const [displayEncryptionResult, setDisplayEncryptionResult] = useState(false);
   const [displayDecryptionResult, setDisplayDecryptionResult] = useState(false);
+  const [copyButtonClicked, setCopyButtonClicked] = useState(false);
+  const [isHashToDecryptValid, setHashToDecryptValid] = useState(false);
   const [encryptButtonDisabled, setEncryptButtonDisabled] = useState(true);
   const [decryptButtonDisabled, setDecryptButtonDisabled] = useState(true);
-  const [copyButtonClicked, setCopyButtonClicked] = useState(false);
   const copyInput = useRef();
 
   useEffect(() => {
@@ -35,20 +35,19 @@ function App() {
 
   useEffect(() => {
     setDisplayDecryptionResult(false);
+    setHashToDecryptValid(hashToDecrypt.startsWith("$"));
   }, [hashToDecrypt]);
 
   useEffect(() => {
-    setDecryptButtonDisabled(textToDecrypt.length === 0 || hashToDecrypt.length === 0);
+    setDecryptButtonDisabled(textToDecrypt.length === 0 || hashToDecrypt.length === 0 || !isHashToDecryptValid);
   }, [textToDecrypt, hashToDecrypt]);
 
   const handleEncryptButtonClicked = async () => {
-    const salt = new Uint8Array(16);
-    window.crypto.getRandomValues(salt);
     setEncryptedText(
       await bcrypt({
         password: textToEncrypt,
-        costFactor: BCRYPT_COST_FACTOR,
-        salt,
+        costFactor: 10,
+        salt: getRandomUint8Array(16),
         outputType: "encoded",
       })
     );
@@ -68,14 +67,7 @@ function App() {
   };
 
   const handleHashToDecryptChanged = (event) => {
-    const { target } = event;
-
-    if (!target.value.startsWith("$")) {
-      target.value = "";
-      return;
-    }
-
-    setHashToDecrypt(target.value);
+    setHashToDecrypt(event.target.value);
   };
 
   const handleEncryptionResultMessageDismissed = () => {
@@ -87,10 +79,7 @@ function App() {
   };
 
   const handleCopyButtonClicked = () => {
-    var copyText = copyInput.current.inputRef.current;
-    copyText.select();
-    copyText.setSelectionRange?.(0, encryptedText.length);
-    document.execCommand("copy");
+    selectAndCopyValueFromInputElement(copyInput.current.inputRef.current);
     setCopyButtonClicked(true);
   };
 
@@ -149,6 +138,7 @@ function App() {
             </h2>
             <Input
               type="text"
+              error={hashToDecrypt.length > 0 && !isHashToDecryptValid}
               placeholder="Enter the hash to check"
               onChange={handleHashToDecryptChanged}
               data-cy="hash-to-decrypt"
