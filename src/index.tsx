@@ -91,7 +91,7 @@ function App() {
               type="text"
               placeholder="Enter some text to encrypt"
               onChange={(_, data) => setTextToEncrypt(data.value)}
-              data-test-id="text-to-encrypt"
+              data-cy="text-to-encrypt"
               fluid
               action
             >
@@ -100,7 +100,7 @@ function App() {
                 color="blue"
                 onClick={handleEncryptButtonClicked}
                 disabled={encryptButtonDisabled}
-                data-test-id="button-to-encrypt"
+                data-cy="button-to-encrypt"
               >
                 Encrypt
               </Button>
@@ -116,7 +116,7 @@ function App() {
                   }
                   value={encryptedText}
                   ref={setCopyInputReference}
-                  data-test-id="encrypted-text"
+                  data-cy="encrypted-text"
                   fluid
                 />
               </Message>
@@ -131,21 +131,21 @@ function App() {
               error={hashToDecrypt.length > 0 && !isHashToDecryptValid}
               placeholder="Enter the hash to check"
               onChange={(_, data) => setHashToDecrypt(data.value)}
-              data-test-id="hash-to-decrypt"
+              data-cy="hash-to-decrypt"
               fluid
             />
             <Input
               type="text"
               placeholder="Enter the text to check against"
               onChange={(_, data) => setTextToDecrypt(data.value)}
-              data-test-id="text-to-decrypt"
+              data-cy="text-to-decrypt"
               fluid
             />
             <Button
               color="blue"
               onClick={handleDecryptButtonClicked}
               disabled={decryptButtonDisabled}
-              data-test-id="button-to-decrypt"
+              data-cy="button-to-decrypt"
               fluid
             >
               Check if hash and text match
@@ -155,7 +155,7 @@ function App() {
                 header="Result:"
                 content="Hash and text match!"
                 onDismiss={handleDecryptionResultMessageDismissed}
-                data-test-id="decryption-result"
+                data-cy="decryption-result"
                 success
               />
             )}
