@@ -1,4 +1,5 @@
 node_modules
 dist
+screenshots
 .eslintcache
 .DS_Store
