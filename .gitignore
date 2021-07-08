@@ -1,4 +1,6 @@
 node_modules
 dist
+**/cypress/screenshots/
+**/cypress/videos/
 .eslintcache
 .DS_Store

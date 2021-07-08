@@ -1,5 +1,3 @@
-/// <reference types="cypress" />
-
 context("Actions", () => {
   beforeEach(() => {
     cy.visit("/");
@@ -17,12 +15,12 @@ context("Actions", () => {
       .invoke("val")
       .then((encryptedText) => {
         cy.get('[data-test-id="hash-to-decrypt"]').type(encryptedText as string);
-
-        cy.get('[data-test-id="text-to-decrypt"]').type(randomText);
-
-        cy.get('[data-test-id="button-to-decrypt"]').click();
-
-        cy.get('[data-test-id="decryption-result"]').should("have.class", "success");
       });
+
+    cy.get('[data-test-id="text-to-decrypt"]').type(randomText);
+
+    cy.get('[data-test-id="button-to-decrypt"]').click();
+
+    cy.get('[data-test-id="decryption-result"]').should("have.class", "success");
   });
 });
