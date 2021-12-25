@@ -10,7 +10,7 @@ specifiers:
   babel-preset-env: 1.7.0
   babel-preset-react: 6.24.1
   cypress: 9.2.0
-  effector: 21.8.12
+  effector: 22.1.2
   effector-react: 21.3.3
   eslint: 8.5.0
   eslint-plugin-import: 2.25.3
@@ -28,8 +28,8 @@ specifiers:
 dependencies:
   '@typescript-eslint/eslint-plugin': 4.33.0_6282d43c67fbcf7e643152c341a4477b
   '@typescript-eslint/parser': 4.33.0_eslint@8.5.0+typescript@4.5.4
-  effector: 21.8.12
-  effector-react: 21.3.3_effector@21.8.12+react@17.0.2
+  effector: 22.1.2
+  effector-react: 21.3.3_effector@22.1.2+react@17.0.2
   hash-wasm: 4.9.0
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
@@ -1367,20 +1367,20 @@ packages:
       safer-buffer: 2.1.2
     dev: true
 
-  /effector-react/21.3.3_effector@21.8.12+react@17.0.2:
+  /effector-react/21.3.3_effector@22.1.2+react@17.0.2:
     resolution: {integrity: sha512-pk+eZQcoI0q8sMtxAvm/lWsZutHW5t0aQBt0edy1XTvjKIhgimFhpxUqJtdtr0asz+9OCN0iG6FYa+Iqo6qpkw==}
     engines: {node: '>=6.0.0'}
     peerDependencies:
       effector: ^21.8.0
       react: '>=16.8.0 <18.0.0'
     dependencies:
-      effector: 21.8.12
+      effector: 22.1.2
       react: 17.0.2
     dev: false
 
-  /effector/21.8.12:
-    resolution: {integrity: sha512-Xlw+qvPlfiF0qOHwRQ3RzS5/TtbfpCZ88ucLqG6o8algEV0nxI+Rd8fyJObDljfqQH0+2ByInawu731IXz5RCA==}
-    engines: {node: '>=6.0.0'}
+  /effector/22.1.2:
+    resolution: {integrity: sha512-myJlmwZbaoNV5YYaRmM4QhAQeUqpbnmmUXZkACzuhV/2z49qCByC4DT62hghHpGz6Knr/sbB4sAAZ8VJCUYy2g==}
+    engines: {node: '>=11.0.0'}
     dev: false
 
   /electron-to-chromium/1.3.771:
