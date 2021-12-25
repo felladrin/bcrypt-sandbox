@@ -1,7 +1,8 @@
 import React from "react";
 import { Input, Button, Message, Icon } from "semantic-ui-react";
 import { useStore } from "effector-react";
-import { bcryptVerify, BcryptVerifyOptions } from "hash-wasm";
+import type { BcryptVerifyOptions } from "hash-wasm";
+import { bcryptVerify } from "hash-wasm";
 import { restore, createEvent, createStore, createEffect, sample, combine } from "effector";
 
 const verify = createEffect((options: BcryptVerifyOptions) => bcryptVerify(options));
