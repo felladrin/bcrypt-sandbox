@@ -21,7 +21,7 @@ specifiers:
   react: 17.0.2
   react-dom: 17.0.2
   semantic-ui-css: 2.4.1
-  semantic-ui-react: 2.1.0
+  semantic-ui-react: 2.1.1
   typescript: 4.5.5
   vite: 2.7.13
 
@@ -34,7 +34,7 @@ dependencies:
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
   semantic-ui-css: 2.4.1
-  semantic-ui-react: 2.1.0_react-dom@17.0.2+react@17.0.2
+  semantic-ui-react: 2.1.1_react-dom@17.0.2+react@17.0.2
 
 devDependencies:
   '@types/react': 17.0.38
@@ -3123,8 +3123,8 @@ packages:
       jquery: 3.6.0
     dev: false
 
-  /semantic-ui-react/2.1.0_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha512-yZUD3YBNIXpdc2pSv1yOIN1Rksf48LsHMI5lV+gIsqbJ9+48o9oveb6MLE2i+Vdqe7cxg1gVdpidvIidMSgw/g==}
+  /semantic-ui-react/2.1.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-rgOHMTjJdOPv/2wGLA+Hr75nyEeQqW0Ag84J3Ha7xISBH5QnaQ6G1sT//e/mssYEZrpDy1ozjT8l/UgovTYSNA==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0
       react-dom: ^16.8.0 || ^17.0.0
