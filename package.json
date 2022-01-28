@@ -1,7 +1,7 @@
 {
   "name": "bcrypt-sandbox",
   "productName": "Bcrypt Sandbox",
-  "description": "A tool for encrypting and decrypting text with bcrypt.",
+  "description": "A tool for encrypting and validating text with bcrypt.",
   "version": "1.0.0",
   "type": "module",
   "private": true,
