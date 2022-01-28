@@ -12,10 +12,10 @@ jobs:
         env:
           HUSKY_SKIP_INSTALL: 1
         run: |
-          npx pnpm install
-          npx pnpm run lint
-          npx pnpm test
-          npx pnpm run build
+          npm ci
+          npm run lint
+          npm test
+          npm run build
       - name: Publish to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:

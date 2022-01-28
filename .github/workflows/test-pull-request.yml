@@ -12,10 +12,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: lts/*
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v2.0.1
-        with:
-          version: latest
-          run_install: true
-      - run: pnpm run lint
-      - run: pnpm test
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
