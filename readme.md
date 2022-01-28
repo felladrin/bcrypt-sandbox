@@ -1,6 +1,6 @@
 # Bcrypt Sandbox
 
-A tool for encrypting and decrypting text with bcrypt. ([Live Demo](https://felladrin.github.io/bcrypt-sandbox/index.html))
+A tool for encrypting and validating text with bcrypt. ([Live Demo](https://felladrin.github.io/bcrypt-sandbox/index.html))
 
 [![Screenshot](screenshot.png)](https://felladrin.github.io/bcrypt-sandbox/index.html)
 

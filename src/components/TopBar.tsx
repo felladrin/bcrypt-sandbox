@@ -6,7 +6,7 @@ export function TopBar(): JSX.Element {
     <Menu fixed="top" inverted>
       <Container>
         <Menu.Item header>Bcrypt Sandbox</Menu.Item>
-        <Menu.Item>A tool for encrypting and decrypting text with bcrypt</Menu.Item>
+        <Menu.Item>A tool for encrypting and validating text with bcrypt</Menu.Item>
       </Container>
     </Menu>
   );

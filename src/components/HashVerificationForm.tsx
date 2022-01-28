@@ -7,91 +7,91 @@ import { restore, createEvent, createStore, createEffect, sample, combine } from
 
 const verify = createEffect((options: BcryptVerifyOptions) => bcryptVerify(options));
 
-const decryptButtonClicked = createEvent();
+const validateButtonClicked = createEvent();
 
-const decryptionResultMessageDismissed = createEvent();
+const validationResultMessageDismissed = createEvent();
 
-const textToDecryptUpdated = createEvent<string>();
+const textToValidateUpdated = createEvent<string>();
 
-const hashToDecryptUpdated = createEvent<string>();
+const hashToValidateUpdated = createEvent<string>();
 
-const textToDecryptStore = restore(textToDecryptUpdated, "");
+const textToValidateStore = restore(textToValidateUpdated, "");
 
-const hashToDecryptStore = restore(hashToDecryptUpdated, "");
+const hashToValidateStore = restore(hashToValidateUpdated, "");
 
-const decryptionMatchedStore = restore(verify.doneData, false);
+const validationMatchedStore = restore(verify.doneData, false);
 
-const displayDecryptionResultStore = createStore(false)
-  .on(decryptButtonClicked, () => true)
-  .reset([decryptionResultMessageDismissed, textToDecryptStore.updates, hashToDecryptStore.updates]);
+const displayValidationResultStore = createStore(false)
+  .on(validateButtonClicked, () => true)
+  .reset([validationResultMessageDismissed, textToValidateStore.updates, hashToValidateStore.updates]);
 
-const isHashToDecryptValidStore = hashToDecryptStore.map((hashToDecrypt) => hashToDecrypt.startsWith("$"));
+const isHashToValidateValidStore = hashToValidateStore.map((hashToValidate) => hashToValidate.startsWith("$"));
 
-const decryptButtonDisabledStore = combine({
-  textToDecrypt: textToDecryptStore,
-  hashToDecrypt: hashToDecryptStore,
-  isHashToDecryptValid: isHashToDecryptValidStore,
+const validateButtonDisabledStore = combine({
+  textToValidate: textToValidateStore,
+  hashToValidate: hashToValidateStore,
+  isHashToValidateValid: isHashToValidateValidStore,
 }).map(
-  ({ textToDecrypt, hashToDecrypt, isHashToDecryptValid }) =>
-    textToDecrypt.length === 0 || hashToDecrypt.length === 0 || !isHashToDecryptValid
+  ({ textToValidate, hashToValidate, isHashToValidateValid }) =>
+    textToValidate.length === 0 || hashToValidate.length === 0 || !isHashToValidateValid
 );
 
 sample({
-  clock: decryptButtonClicked,
-  source: combine({ password: textToDecryptStore, hash: hashToDecryptStore }),
+  clock: validateButtonClicked,
+  source: combine({ password: textToValidateStore, hash: hashToValidateStore }),
   target: verify,
 });
 
 export function HashVerificationForm(): JSX.Element {
-  const hashToDecrypt = useStore(hashToDecryptStore);
-  const displayDecryptionResult = useStore(displayDecryptionResultStore);
-  const isHashToDecryptValid = useStore(isHashToDecryptValidStore);
-  const decryptButtonDisabled = useStore(decryptButtonDisabledStore);
-  const decryptionMatched = useStore(decryptionMatchedStore);
+  const hashToValidate = useStore(hashToValidateStore);
+  const displayValidationResult = useStore(displayValidationResultStore);
+  const isHashToValidateValid = useStore(isHashToValidateValidStore);
+  const validateButtonDisabled = useStore(validateButtonDisabledStore);
+  const validationMatched = useStore(validationMatchedStore);
 
   return (
     <>
       <h2 className="ui center aligned header">
-        <Icon fitted name="retweet" /> Decryption
+        <Icon fitted name="retweet" /> Validation
       </h2>
       <Input
         type="text"
-        error={hashToDecrypt.length > 0 && !isHashToDecryptValid}
+        error={hashToValidate.length > 0 && !isHashToValidateValid}
         placeholder="Enter the hash to check"
-        onChange={(_, data) => hashToDecryptUpdated(data.value)}
-        data-test-id="hash-to-decrypt"
+        onChange={(_, data) => hashToValidateUpdated(data.value)}
+        data-test-id="hash-to-validate"
         fluid
       />
       <Input
         type="text"
         placeholder="Enter the text to check against"
-        onChange={(_, data) => textToDecryptUpdated(data.value)}
-        data-test-id="text-to-decrypt"
+        onChange={(_, data) => textToValidateUpdated(data.value)}
+        data-test-id="text-to-validate"
         fluid
       />
       <Button
         color="blue"
-        onClick={() => decryptButtonClicked()}
-        disabled={decryptButtonDisabled}
-        data-test-id="button-to-decrypt"
+        onClick={() => validateButtonClicked()}
+        disabled={validateButtonDisabled}
+        data-test-id="button-to-validate"
         fluid
       >
         Check if hash and text match
       </Button>
-      {displayDecryptionResult && decryptionMatched && (
+      {displayValidationResult && validationMatched && (
         <Message
           header="Result:"
           content="Hash and text match!"
-          onDismiss={() => decryptionResultMessageDismissed()}
-          data-test-id="decryption-result"
+          onDismiss={() => validationResultMessageDismissed()}
+          data-test-id="validation-result"
           success
         />
       )}
-      {displayDecryptionResult && !decryptionMatched && (
+      {displayValidationResult && !validationMatched && (
         <Message
           header="Result:"
           content="Hash and text don't match."
-          onDismiss={() => decryptionResultMessageDismissed()}
+          onDismiss={() => validationResultMessageDismissed()}
           negative
         />
       )}
