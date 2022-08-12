@@ -4,3 +4,4 @@ dist
 **/cypress/videos/
 .eslintcache
 .DS_Store
+.parcel-cache

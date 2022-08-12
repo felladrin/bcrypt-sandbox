@@ -1,12 +1,12 @@
 image:
   file: .gitpod.Dockerfile
 tasks:
-  - name: Vite Dev Server
+  - name: Dev Server
     init: npm ci
     command: |
       npx cypress install
       npm run dev
 ports:
-  - port: 5173
+  - port: 1234
     onOpen: open-preview
-    name: Vite Dev Server
+    name: Dev Server
