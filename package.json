@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "type": "module",
   "private": true,
-  "source": "index.html",
+  "source": "./src/index.html",
   "scripts": {
     "dev": "parcel",
     "build": "parcel build --public-url ./",
