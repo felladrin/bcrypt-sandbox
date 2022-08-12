@@ -12,4 +12,3 @@ After cloning this repository, you can use the following commands:
 | --------------- | --------------------------------- |
 | `npm run dev`   | Start the app in development mode |
 | `npm run build` | Build the web app for production  |
-| `npm run serve` | Start a production web server     |
