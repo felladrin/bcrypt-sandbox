@@ -8,7 +8,7 @@
   "source": "index.html",
   "scripts": {
     "dev": "parcel",
-    "build": "parcel build",
+    "build": "parcel build --public-url ./",
     "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx src",
     "cypress-open": "cypress open",
     "cypress-run": "cypress run",
