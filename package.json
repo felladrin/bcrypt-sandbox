@@ -8,7 +8,8 @@
   "source": "./src/index.html",
   "scripts": {
     "dev": "parcel",
-    "build": "parcel build --public-url ./",
+    "build": "parcel build --public-url ./ --no-source-maps",
+    "prebuild": "node -e \"fs.rmSync('dist', { recursive: true })\"",
     "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx src",
     "cypress-open": "cypress open",
     "cypress-run": "cypress run",
