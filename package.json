@@ -42,7 +42,7 @@
     "babel-plugin-transform-es2015-classes": "6.24.1",
     "babel-preset-env": "1.7.0",
     "babel-preset-react": "6.24.1",
-    "cypress": "10.6.0",
+    "cypress": "10.7.0",
     "eslint": "8.23.0",
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-jsx-a11y": "6.6.1",
