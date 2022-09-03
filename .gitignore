@@ -1,7 +1,8 @@
 node_modules
 dist
-**/cypress/screenshots/
-**/cypress/videos/
+/test-results/
+/playwright-report/
+/playwright/.cache/
 .eslintcache
 .DS_Store
 .parcel-cache
