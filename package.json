@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "parcel",
     "build": "parcel build --public-url ./ --no-source-maps",
-    "prebuild": "node -e \"fs.rmSync('dist', { recursive: true })\"",
+    "prebuild": "del dist",
     "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx src",
     "test": "playwright test"
   },
@@ -40,6 +40,7 @@
     "babel-plugin-transform-es2015-classes": "6.24.1",
     "babel-preset-env": "1.7.0",
     "babel-preset-react": "6.24.1",
+    "del-cli": "5.0.0",
     "eslint": "8.23.0",
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-jsx-a11y": "6.6.1",
