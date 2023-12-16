@@ -35,7 +35,7 @@
   "devDependencies": {
     "@playwright/test": "1.40.1",
     "@types/react": "18.2.45",
-    "@types/react-dom": "18.2.17",
+    "@types/react-dom": "18.2.18",
     "babel-plugin-transform-async-to-generator": "6.24.1",
     "babel-plugin-transform-es2015-classes": "6.24.1",
     "babel-preset-env": "1.7.0",
