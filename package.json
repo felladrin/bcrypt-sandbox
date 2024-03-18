@@ -24,8 +24,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "7.2.0",
-    "@typescript-eslint/parser": "7.2.0",
+    "@typescript-eslint/eslint-plugin": "7.3.0",
+    "@typescript-eslint/parser": "7.3.0",
     "hash-wasm": "4.11.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
