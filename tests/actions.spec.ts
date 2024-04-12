@@ -7,7 +7,7 @@ test("encryption and validation of a random text", async ({ page }) => {
 
   const textToEncryptElement = page.locator('[data-test-id="text-to-encrypt"]').locator("input");
 
-  await textToEncryptElement.type(randomText);
+  await textToEncryptElement.fill(randomText);
 
   await expect(textToEncryptElement).toHaveValue(randomText);
 
@@ -15,9 +15,9 @@ test("encryption and validation of a random text", async ({ page }) => {
 
   const encryptedText = await page.locator('[data-test-id="encrypted-text"]').locator("input").inputValue();
 
-  await page.locator('[data-test-id="hash-to-validate"]').locator("input").type(encryptedText);
+  await page.locator('[data-test-id="hash-to-validate"]').locator("input").fill(encryptedText);
 
-  await page.locator('[data-test-id="text-to-validate"]').locator("input").type(randomText);
+  await page.locator('[data-test-id="text-to-validate"]').locator("input").fill(randomText);
 
   await page.locator('[data-test-id="button-to-validate"]').click();
 
