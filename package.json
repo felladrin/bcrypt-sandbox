@@ -10,7 +10,7 @@
     "dev": "parcel",
     "build": "parcel build --public-url ./ --no-source-maps",
     "prebuild": "del dist",
-    "lint": "eslint --fix",
+    "lint": "eslint --fix src tests",
     "test": "playwright test"
   },
   "author": {
