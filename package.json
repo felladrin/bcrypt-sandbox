@@ -38,7 +38,7 @@
     "@babel/plugin-transform-async-to-generator": "^7.24.1",
     "@babel/preset-env": "^7.24.4",
     "@babel/preset-react": "^7.24.1",
-    "del-cli": "^5.1.0",
+    "del-cli": "^6.0.0",
     "eslint": "^9.0.0",
     "globals": "^15.0.0",
     "npm-run-all2": "^6.1.2",
