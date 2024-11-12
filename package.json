@@ -31,13 +31,14 @@
     "semantic-ui-react": "^2.1.5"
   },
   "devDependencies": {
-    "@eslint/js": "^9.0.0",
-    "@playwright/test": "^1.43.1",
-    "@types/react": "^18.2.77",
-    "@types/react-dom": "^18.2.25",
     "@babel/plugin-transform-async-to-generator": "^7.24.1",
     "@babel/preset-env": "^7.24.4",
     "@babel/preset-react": "^7.24.1",
+    "@eslint/js": "^9.0.0",
+    "@parcel/optimizer-svgo": "^2.13.0",
+    "@playwright/test": "^1.43.1",
+    "@types/react": "^18.2.77",
+    "@types/react-dom": "^18.2.25",
     "del-cli": "^6.0.0",
     "eslint": "^9.0.0",
     "globals": "^15.0.0",
