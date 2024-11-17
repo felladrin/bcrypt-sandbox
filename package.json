@@ -1,52 +1,50 @@
 {
-  "name": "bcrypt-sandbox",
-  "productName": "Bcrypt Sandbox",
-  "description": "A tool for encrypting and validating text with bcrypt.",
-  "version": "1.0.0",
-  "type": "module",
-  "private": true,
-  "source": "./src/index.html",
-  "scripts": {
-    "dev": "parcel",
-    "build": "parcel build --public-url ./ --no-source-maps",
-    "prebuild": "del dist",
-    "lint": "eslint --fix src tests",
-    "test": "playwright test"
-  },
-  "author": {
-    "name": "Victor Nogueira",
-    "email": "victor@victornogueira.app",
-    "url": "https://victornogueira.app"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/felladrin/bcrypt-sandbox"
-  },
-  "license": "MIT",
-  "dependencies": {
-    "hash-wasm": "^4.11.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "semantic-ui-css": "^2.5.0",
-    "semantic-ui-react": "^2.1.5"
-  },
-  "devDependencies": {
-    "@babel/plugin-transform-async-to-generator": "^7.24.1",
-    "@babel/preset-env": "^7.24.4",
-    "@babel/preset-react": "^7.24.1",
-    "@eslint/js": "^9.0.0",
-    "@playwright/test": "^1.43.1",
-    "@types/react": "^18.2.77",
-    "@types/react-dom": "^18.2.25",
-    "del-cli": "^6.0.0",
-    "eslint": "^9.0.0",
-    "globals": "^15.0.0",
-    "npm-run-all2": "^7.0.0",
-    "parcel": "^2.12.0",
-    "playwright": "^1.43.1",
-    "process": "^0.11.10",
-    "svgo": "^3.3.2",
-    "typescript": "^5.4.5",
-    "typescript-eslint": "^8.0.0"
-  }
+	"name": "bcrypt-sandbox",
+	"productName": "Bcrypt Sandbox",
+	"description": "A tool for encrypting and validating text with bcrypt.",
+	"version": "1.0.0",
+	"type": "module",
+	"private": true,
+	"source": "./src/index.html",
+	"scripts": {
+		"dev": "parcel",
+		"build": "parcel build --public-url ./ --no-source-maps",
+		"prebuild": "del dist",
+		"lint": "biome check --write",
+		"test": "playwright test"
+	},
+	"author": {
+		"name": "Victor Nogueira",
+		"email": "victor@victornogueira.app",
+		"url": "https://victornogueira.app"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/felladrin/bcrypt-sandbox"
+	},
+	"license": "MIT",
+	"dependencies": {
+		"hash-wasm": "^4.11.0",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"semantic-ui-css": "^2.5.0",
+		"semantic-ui-react": "^2.1.5"
+	},
+	"devDependencies": {
+		"@babel/plugin-transform-async-to-generator": "^7.24.1",
+		"@babel/preset-env": "^7.24.4",
+		"@babel/preset-react": "^7.24.1",
+		"@biomejs/biome": "1.9.4",
+		"@playwright/test": "^1.43.1",
+		"@types/react": "^18.2.77",
+		"@types/react-dom": "^18.2.25",
+		"del-cli": "^6.0.0",
+		"globals": "^15.0.0",
+		"npm-run-all2": "^7.0.0",
+		"parcel": "^2.12.0",
+		"playwright": "^1.43.1",
+		"process": "^0.11.10",
+		"svgo": "^3.3.2",
+		"typescript": "^5.4.5"
+	}
 }
