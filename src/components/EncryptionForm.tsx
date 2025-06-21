@@ -1,5 +1,5 @@
 import { bcrypt } from "hash-wasm";
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Button, Icon, Input, Message } from "semantic-ui-react";
 
 export function EncryptionForm(): JSX.Element {

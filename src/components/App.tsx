@@ -1,4 +1,3 @@
-import React from "react";
 import { Container, Grid } from "semantic-ui-react";
 import { EncryptionForm } from "./EncryptionForm";
 import { HashVerificationForm } from "./HashVerificationForm";

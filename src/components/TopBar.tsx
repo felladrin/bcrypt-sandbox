@@ -1,4 +1,3 @@
-import React from "react";
 import { Container, Menu } from "semantic-ui-react";
 
 export function TopBar(): JSX.Element {
