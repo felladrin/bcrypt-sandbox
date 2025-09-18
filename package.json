@@ -38,7 +38,7 @@
 		"@playwright/test": "^1.43.1",
 		"@types/react": "^18.2.77",
 		"@types/react-dom": "^18.2.25",
-		"del-cli": "^6.0.0",
+		"del-cli": "^7.0.0",
 		"globals": "^16.0.0",
 		"npm-run-all2": "^8.0.0",
 		"parcel": "^2.12.0",
