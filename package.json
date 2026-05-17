@@ -28,7 +28,7 @@
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0",
 		"semantic-ui-css": "^2.5.0",
-		"semantic-ui-react": "^2.1.5"
+		"semantic-ui-react": "3.0.0-beta.2"
 	},
 	"devDependencies": {
 		"@babel/plugin-transform-async-to-generator": "^7.24.1",

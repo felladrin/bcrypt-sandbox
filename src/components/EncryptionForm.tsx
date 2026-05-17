@@ -1,5 +1,5 @@
 import { bcrypt } from "hash-wasm";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Button, Icon, Input, Message } from "semantic-ui-react";
 
 export function EncryptionForm(): JSX.Element {
@@ -10,8 +10,7 @@ export function EncryptionForm(): JSX.Element {
 	const [hasCopyButtonBeenClicked, setHasCopyButtonBeenClicked] =
 		useState(false);
 	const [isEncryptButtonDisabled, setEncryptButtonDisabled] = useState(true);
-	const [encryptedTextInputElement, setEncryptedTextInputElement] =
-		useState<Input | null>(null);
+	const encryptedTextInputRef = useRef<HTMLInputElement>(null);
 
 	const encryptionResultMessageDismissed = useCallback(
 		() => setDisplayEncryptionResult(false),
@@ -28,20 +27,17 @@ export function EncryptionForm(): JSX.Element {
 	}, [textToEncrypt]);
 
 	const handleCopyButtonClicked = useCallback(() => {
-		if (encryptedTextInputElement === null) return;
+		if (encryptedTextInputRef.current === null) return;
 
-		const inputElement = (
-			encryptedTextInputElement as unknown as {
-				inputRef: { current: HTMLInputElement };
-			}
-		).inputRef.current;
-
-		inputElement.select();
-		inputElement.setSelectionRange?.(0, inputElement.value.length);
+		encryptedTextInputRef.current.select();
+		encryptedTextInputRef.current.setSelectionRange?.(
+			0,
+			encryptedTextInputRef.current.value.length,
+		);
 		document.execCommand("copy");
 
 		setHasCopyButtonBeenClicked(true);
-	}, [encryptedTextInputElement]);
+	}, []);
 
 	useEffect(() => {
 		setHasCopyButtonBeenClicked(false);
@@ -92,7 +88,7 @@ export function EncryptionForm(): JSX.Element {
 							</Button>
 						}
 						value={encryptedText}
-						ref={setEncryptedTextInputElement}
+						ref={encryptedTextInputRef}
 						data-test-id="encrypted-text"
 						fluid
 					/>
