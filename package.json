@@ -34,7 +34,7 @@
 		"@babel/plugin-transform-async-to-generator": "^8.0.0",
 		"@babel/preset-env": "^8.0.0",
 		"@babel/preset-react": "^8.0.0",
-		"@biomejs/biome": "2.5.1",
+		"@biomejs/biome": "2.5.2",
 		"@playwright/test": "^1.43.1",
 		"@types/react": "^19.0.0",
 		"@types/react-dom": "^19.0.0",
